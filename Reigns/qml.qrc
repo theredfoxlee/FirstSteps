@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>main.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/axe.png</file>
+        <file>images/cross.png</file>
+        <file>images/dollar.png</file>
+        <file>images/helmet.png</file>
+        <file>images/human.png</file>
+        <file>images/sword.png</file>
+    </qresource>
+    <qresource prefix="/sound">
+        <file>sound/kick.wav</file>
+    </qresource>
+    <qresource prefix="/txt">
+        <file>events.txt</file>
+    </qresource>
+</RCC>
