@@ -4,7 +4,11 @@ QT += qml quick
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    Controller.cpp
+    Inspector.cpp \
+    EventModel.cpp \
+    PlayerModel.cpp \
+    RealmModel.cpp \
+    EventsGrasper.cpp
 
 RESOURCES += qml.qrc
 
@@ -35,4 +39,8 @@ HEADERS += \
     Event.h \
     Realm.h \
     Data.h \
-    Controller.h
+    Inspector.h \
+    EventModel.h \
+    PlayerModel.h \
+    RealmModel.h \
+    EventsGrasper.h

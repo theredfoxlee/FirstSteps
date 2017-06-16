@@ -61,7 +61,7 @@ The Merchant
 Suspendisse eros ante, interdum et lacus sed, luctus rhoncus sem. Morbi vel elit et magna sagittis euismod. Nulla vehicula libero diam, et eleifend nibh venenatis elementum.
 7 7 -3 10
 10 -10 -3 -10
-The Farmer 
+The Farmer
 
 Nullam purus odio, rutrum quis erat suscipit, faucibus efficitur sapien. Integer tincidunt semper porttitor. Ut faucibus elit pretium condimentum finibus.
 0 0 0 -10

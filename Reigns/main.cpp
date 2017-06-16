@@ -1,74 +1,42 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
 #include <QQmlEngine>
 #include <QQmlContext>
 
-#include <QVector>
-#include <QFile>
-#include <QTextStream>
-#include <QDebug>
-
-#include "Data.h"
-#include "Event.h"
-#include "Player.h"
-#include "Realm.h"
-#include "Controller.h"
-
-QVector <Event> getEvents(const QString & eventsUrl);
+#include "EventsGrasper.h"
+#include "RealmModel.h"
+#include "EventModel.h"
+#include "PlayerModel.h"
+#include "Inspector.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    Data data(Player("John", "the Brave"), Realm());
-    QScopedPointer<Controller> controller(new Controller(data, getEvents(":/txt/events.txt")));
+    EventsGrasper events("C:/Users/John/Desktop/Reigns/Reigns/events.txt");
+
+    Player testPlayer("John", " the Brave");
+    Realm testRealm(100, 50, 50, 40);
+    Event testEvent = events.extract().front();
+
+    QScopedPointer <RealmModel> realm(new RealmModel(testRealm));
+    QScopedPointer <EventModel> event(new EventModel(testEvent));
+    QScopedPointer <PlayerModel> player(new PlayerModel(testPlayer));
+
+    QScopedPointer <Inspector> inspector(new Inspector);
+    inspector->setRealmModel(realm.data());
+    inspector->setEventModel(event.data());
+    inspector->setPlayerModel(player.data());
+
+    inspector->setEvents(events.extract());
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("controller", controller.data());
+    engine.rootContext()->setContextProperty("realm", realm.data());
+    engine.rootContext()->setContextProperty("event", event.data());
+    engine.rootContext()->setContextProperty("player", player.data());
+    engine.rootContext()->setContextProperty("inspector", inspector.data());
+
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     return app.exec();
-}
-
-QVector <Event> getEvents(const QString & eventsUrl)
-{
-    QFile file("C:/Users/John/Desktop/Reigns/Reigns/events.txt");
-
-    qDebug() << eventsUrl;
-
-
-    if (!file.open(QFile::ReadOnly | QFile::Text))
-    {
-        QVector <Event> temp;
-        QString message("Eventy nie załadowane.");
-        Event::Influence yes(0, 0, 0, 0);
-        Event::Influence no(0, 0, 0, 0);
-        temp.push_back(Event(message, "qrc:/images/images/helmet.png", "Some Charater The First", yes, no));
-        return temp;
-    }
-
-    QTextStream in(&file);
-    QVector <Event> temp;
-
-    while (!in.atEnd())
-    {
-        Event event;
-        char endOfLine;
-
-        event.message = in.readLine();
-        in >> event.yes.clergy >> event.yes.army >> event.yes.health >> event.yes.wealth;
-        in >> event.no.clergy >> event.no.army >> event.no.health >> event.no.wealth;
-
-        in >> endOfLine;
-        event.avatarUrl = "qrc:/images/images/helmet.png";
-        event.character = in.readLine();
-        in >> endOfLine;
-
-        temp.push_back(event);
-    }
-
-    file.close();
-
-    return temp;
 }
