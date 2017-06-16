@@ -1,6 +1,6 @@
 # Harmonogram
 
-Tydzień 1 odpowiada 14-21.05.17, a Tydzień 5 odpowiada 5-11.06.
+Tydzień 1 odpowiada 14-21.05.17, a Tydzień 5 odpowiada 11-18.06.17.
 
 - Tydzień 1: Nauka podstaw Qt oraz Gita / Planowanie struktury projektu
 - Tydzień 2: Implementacja prostszych klas (kontrolerów oraz kontenerów)
