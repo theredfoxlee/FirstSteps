@@ -34,10 +34,22 @@ signals:
     void wealthChanged();
 
 public slots:
-    void setClergy(QString clergy) { _realm.clergy = clergy.toInt(); }
-    void setArmy(QString army) { _realm.army = army.toInt(); }
-    void setHealth(QString health) { _realm.health = health.toInt(); }
-    void setWealth(QString wealth) { _realm.wealth = wealth.toInt(); }
+    void setClergy(QString clergy) {
+        _realm.clergy = clergy.toInt();
+        emit clergyChanged();
+    }
+    void setArmy(QString army) {
+        _realm.army = army.toInt();
+        emit armyChanged();
+    }
+    void setHealth(QString health) {
+        _realm.health = health.toInt();
+        emit healthChanged();
+    }
+    void setWealth(QString wealth) {
+        _realm.wealth = wealth.toInt();
+        emit wealthChanged();
+    }
 
 public:
     void synchronize();

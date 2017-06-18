@@ -13,9 +13,9 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    EventsGrasper events("C:/Users/John/Desktop/Reigns/Reigns/events.txt");
+    EventsGrasper events(":/txt/events2.txt");
 
-    Player testPlayer("John", " the Brave");
+    Player testPlayer("John", "the Brave");
     Realm testRealm(100, 50, 50, 40);
     Event testEvent = events.extract().front();
 

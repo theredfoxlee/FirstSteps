@@ -2,66 +2,107 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 
 ApplicationWindow {
+    id: window
     visible: true
     width: 320
-    height: 700
+    height: 660
     title: qsTr("Reigns")
-//    flags: Qt.FramelessWindowHint
+    flags: Qt.FramelessWindowHint
 
-    SwipeView {
-        id: swipeView
-        currentIndex: tabBar.currentIndex
+    MouseArea {
+        anchors.fill: parent
+        property variant previousPosition
+        onPressed: {
+            previousPosition = Qt.point(mouseX, mouseY)
+        }
+        onPositionChanged: {
+            if (pressedButtons == Qt.LeftButton) {
+                var dx = mouseX - previousPosition.x
+                var dy = mouseY - previousPosition.y
+                window.x += dx;
+                window.y += dy;
+            }
+        }
 
-//        StartView {
-//
-//        }
-
-        GameView {
-            gameViewTop.txtClergy: realm.clergy
-            gameViewTop.txtArmy: realm.army
-            gameViewTop.txtHealth: realm.health
-            gameViewTop.txtWealth: realm.wealth
-            gameViewTop.imgClergy: "qrc:/images/images/cross.png"
-            gameViewTop.imgArmy: "qrc:/images/images/axe.png"
-            gameViewTop.imgHealth: "qrc:/images/images/human.png"
-            gameViewTop.imgWealth: "qrc:/images/images/dollar.png"
-
-            gameViewMid.txtMessage: event.message
-            gameViewMid.txtCharcter: event.character
-            gameViewMid.imgAvatar: event.avatarUrl
-            gameViewMid.kick: "qrc:/sound/sound/kick.wav"
-            gameViewMid.avatarInteraction {
-                onClicked: {
-                    inspector.update(gameViewMid.avatarInteraction.mouseX <
-                                     ( gameViewMid.avatarInteraction.parent.width / 2))
-                }
+        StartView {
+            id: startView
+            visible: true
+            onVisibleChanged: {
+                textInputName = "John";
+                textInputNickname = "the Brave";
             }
 
-            gameViewBot.txtPlayer: player.playerName + " " + player.nickname
-            gameViewBot.txtInPower: player.reignTime + " years in power"
-            gameViewBot.txtYear: player.year
+            play.onClicked: {
+                player.playerName = startView.textInputName;
+                player.nickname = startView.textInputNickname;
+                startView.visible = false;
+                gameView.visible = true;
+            }
+            exit.onClicked: {
+                Qt.quit();
+            }
         }
 
-//        EndView {
-//
-//        }
-    }
+        GameView {
+            id: gameView
+            visible: false
+            txtClergy: realm.clergy
+            txtArmy: realm.army
+            txtHealth: realm.health
+            txtWealth: realm.wealth
+            txtMessage: event.message
+            txtCharcter: event.character
+            imgAvatar: event.avatarUrl
+            yes {
+                onClicked: {
+                    inspector.update(true);
+                    if (inspector.isOver()) {
+                        gameView.visible = false;
+                        endView.visible = true;
+                    }
+                }
 
-    footer: TabBar {
-        id: tabBar
-        currentIndex: swipeView.currentIndex
-        contentHeight: 40
-
-//        TabButton {
-//            text: "Again"
-//        }
-
-        TabButton {
-            text: "GAME"
+            }
+            no {
+                onClicked: {
+                    inspector.update(true);
+                    if (inspector.isOver()) {
+                        gameView.visible = false;
+                        endView.visible = true;
+                    }
+                }
+            }
+            txtPlayer: player.playerName + " " + player.nickname
+            txtYear: player.reignTime + " in power" + "   Year: " + player.year
+            surrender {
+                onClicked: {
+                    inspector.surrender = true;
+                    gameView.visible = false;
+                    endView.visible = true;
+                }
+            }
         }
 
-//        TabButton {
-//            text: "Quit"
-//        }
+        EndView {
+            id: endView
+            visible: false
+
+            onVisibleChanged: {
+                txtCauseOfFailure = inspector.getOverMessage();
+            }
+
+            txtCauseOfFailure: inspector.getOverMessage()
+            txtAchievement: "You have survievd " + player.reignTime + " years!"
+            again {
+                onClicked: {
+                    inspector.reset();
+                    endView.visible = false;
+                    startView.visible = true;
+                }
+            }
+            exit {
+                onClicked: Qt.quit()
+            }
+        }
     }
 }

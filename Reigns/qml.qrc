@@ -1,24 +1,25 @@
 <RCC>
     <qresource prefix="/qml">
         <file>main.qml</file>
-        <file>GameViewTop.qml</file>
-        <file>GameViewMid.qml</file>
-        <file>GameViewBot.qml</file>
-        <file>GameView.qml</file>
         <file>StartView.qml</file>
         <file>EndView.qml</file>
+        <file>GameView.qml</file>
     </qresource>
     <qresource prefix="/images">
-        <file>images/axe.png</file>
-        <file>images/cross.png</file>
-        <file>images/dollar.png</file>
-        <file>images/human.png</file>
-        <file>images/sword.png</file>
-        <file>images/diplomat.png</file>
-        <file>images/farmer.png</file>
+        <file>images/error.png</file>
+        <file>images/crown.png</file>
+        <file>images/play.png</file>
+        <file>images/exit3.png</file>
+        <file>images/tombstone2.png</file>
+        <file>images/axe[white].png</file>
+        <file>images/cross[white].png</file>
+        <file>images/dollar[white].png</file>
+        <file>images/human[white].png</file>
+        <file>images/bishop.png</file>
         <file>images/general.png</file>
         <file>images/merchant.png</file>
-        <file>images/error.png</file>
+        <file>images/farmer.png</file>
+        <file>images/diplomat.png</file>
     </qresource>
     <qresource prefix="/sound">
         <file>sound/kick.wav</file>

@@ -36,10 +36,22 @@ signals:
     void yearChanged();
 
 public slots:
-    void setPlayerName(QString playerName) { _player.name = playerName; }
-    void setReignTime(QString reignTime) { _player.reignTime = reignTime.toInt(); }
-    void setNickname(QString nickname) { _player.nickname = nickname; }
-    void setYear(QString year) { _year = year.toInt(); }
+    void setPlayerName(QString playerName) {
+        _player.name = playerName;
+        emit playerNameChanged();
+    }
+    void setReignTime(QString reignTime) {
+        _player.reignTime = reignTime.toInt();
+        emit reignTimeChanged();
+    }
+    void setNickname(QString nickname) {
+        _player.nickname = nickname;
+        emit nicknameChanged();
+    }
+    void setYear(QString year) {
+        _year = year.toInt();
+        emit yearChanged();
+    }
 
 public:
     void synchronize();
