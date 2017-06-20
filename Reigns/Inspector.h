@@ -7,7 +7,6 @@
 #include "RealmModel.h"
 #include "EventModel.h"
 #include "PlayerModel.h"
-#include "OutputWrapper.h"
 
 class Inspector : public QObject
 {
@@ -17,8 +16,6 @@ private:
     RealmModel * _realm;
     EventModel * _event;
     PlayerModel * _player;
-
-    OutputWrapper _out;
 
     QVector <Event> _events;
 

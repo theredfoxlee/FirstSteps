@@ -20,7 +20,7 @@ Inspector::Inspector(QObject *parent)
 
 void Inspector::update(bool choice)
 {
-    choice ? update(_event->_event.no) : update(_event->_event.yes);
+    choice ? update(_event->_event.yes) : update(_event->_event.no);
 
     _event->_event = getRandomEvent();
 

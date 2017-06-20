@@ -56,7 +56,7 @@ ApplicationWindow {
             }
             no {
                 onClicked: {
-                    inspector.update(true);
+                    inspector.update(false);
                     if (inspector.isOver()) {
                         gameView.visible = false;
                         endView.visible = true;
@@ -65,7 +65,6 @@ ApplicationWindow {
             }
             surrender {
                 onClicked: {
-                    inspector.surrender = true;
                     gameView.visible = false;
                     endView.visible = true;
                 }
