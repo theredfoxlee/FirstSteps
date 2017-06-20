@@ -38,7 +38,6 @@ HEADERS += \
     Player.h \
     Event.h \
     Realm.h \
-    Data.h \
     Inspector.h \
     EventModel.h \
     PlayerModel.h \

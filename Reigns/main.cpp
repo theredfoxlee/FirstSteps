@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    EventsGrasper events(":/txt/events2.txt");
+    EventsGrasper events(":/txt/events.txt");
 
     Player testPlayer("John", "the Brave");
     Realm testRealm(100, 50, 50, 40);

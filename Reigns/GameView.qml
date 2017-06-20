@@ -136,6 +136,7 @@ Rectangle {
         }
 
         Rectangle {
+            id: background
             color: "#ffffff"
             Layout.preferredHeight: 225
             Layout.preferredWidth: 320
@@ -168,6 +169,9 @@ Rectangle {
                 anchors.topMargin: 0
                 cursorShape: Qt.PointingHandCursor
                 onClicked: kick.play()
+                hoverEnabled: true
+                onEntered: background.color = "#D9534F"
+                onExited: background.color = "#ffffff"
             }
 
             MouseArea {
@@ -182,6 +186,9 @@ Rectangle {
                 anchors.rightMargin: 0
                 cursorShape: Qt.PointingHandCursor
                 onClicked: kick.play()
+                hoverEnabled: true
+                onEntered: background.color = "#449D44"
+                onExited: background.color = "#ffffff"
             }
         }
 

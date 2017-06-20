@@ -11,7 +11,6 @@ Rectangle {
 
     width: 320
     height: 660
-
     color: "#161616"
 
     Text {

@@ -4,6 +4,7 @@
         <file>StartView.qml</file>
         <file>EndView.qml</file>
         <file>GameView.qml</file>
+        <file>Dragger.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/error.png</file>
@@ -26,6 +27,5 @@
     </qresource>
     <qresource prefix="/txt">
         <file>events.txt</file>
-        <file>events2.txt</file>
     </qresource>
 </RCC>

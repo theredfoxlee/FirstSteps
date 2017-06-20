@@ -68,10 +68,9 @@ Rectangle {
                 text: qsTr("The peasants did not stand your reign and raised the king on the pitchforks!")
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.WordWrap
-                font.bold: true
                 font.family: "MS Shell Dlg 2"
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 15
+                font.pixelSize: 12
             }
         }
 
@@ -90,8 +89,7 @@ Rectangle {
                 color: "#161616"
                 text: qsTr("You have survived 20 years!")
                 verticalAlignment: Text.AlignVCenter
-                font.bold: true
-                font.pixelSize: 15
+                font.pixelSize: 12
                 horizontalAlignment: Text.AlignHCenter
             }
         }
